@@ -8,7 +8,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ16953 {
-    static int start, end;
+    static long start, end;
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
@@ -19,15 +19,15 @@ public class BOJ16953 {
         System.out.println(bfs(start));
     }
 
-    private static int bfs(int start) {
-        Queue<Integer> queue = new LinkedList<>();
-        Queue<Integer> steps = new LinkedList<>();
+    private static long bfs(long start) {
+        Queue<Long> queue = new LinkedList<>();
+        Queue<Long> steps = new LinkedList<>();
         queue.add(start);
-        steps.add(1);
+        steps.add(1L);
 
         while (!queue.isEmpty()) {
-            int current = queue.poll();
-            int step = steps.poll();
+            long current = queue.poll();
+            long step = steps.poll();
 
             if (current == end) {
                 return step;
