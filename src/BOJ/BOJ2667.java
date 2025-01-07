@@ -63,8 +63,6 @@ public class BOJ2667 {
         visited[i][j] = true;
         apt[i][j] = count;
         danjiCount[count]++;
-
-
         for (int k = 0; k < 4; k++) {
             problem(i + moveX[k], j + moveY[k]);
         }
