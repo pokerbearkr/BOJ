@@ -28,6 +28,8 @@ public class BOJ15654 {
 
 
 
+
+
     }
     private static void dfs(int start, int depth){
         if(depth==M){
