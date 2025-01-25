@@ -1,62 +1,50 @@
 package BOJ;
 
+import com.sun.source.tree.Tree;
+
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class BOJ15666 {
-    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static StringTokenizer st;
-    static StringBuilder sb = new StringBuilder();
-    static int N, M;
-    static int[] arr;
-    static boolean[] used;
-    static int[] numbers;
+    private static int n, m;
+    private static List<Integer> numbers;
+    private static StringBuilder sb = new StringBuilder();
+    private static int[] result;
 
-    public static void main(String[] args) throws IOException {
-        st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
-        arr = new int[M];
-        used = new boolean[N];
-        numbers = new int[N];
-        st = new StringTokenizer(br.readLine());
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        for (int i = 0; i < N; i++) {
-            numbers[i] = Integer.parseInt(st.nextToken());
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+
+        Set<Integer> set = new HashSet<>();
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < n; i++) {
+            set.add(Integer.parseInt(st.nextToken()));
         }
-        Arrays.sort(numbers);
 
-        dfs(0);
+        numbers = new ArrayList<>(set);
+        Collections.sort(numbers);
+
+        result = new int[m];
+        dfs(0, 0);
         System.out.println(sb);
-
     }
 
-    private static void dfs(int depth) {
-        if (depth == M) {
-            for (int val : arr) {
-                sb.append(val).append(" ");
+    private static void dfs(int start, int depth) {
+        if (depth == m) {
+            for (int i = 0; i < m; i++) {
+                sb.append(result[i]).append(" ");
             }
-            sb.append("\n");
+            sb.append('\n');
             return;
         }
 
-        int prev = -1;
-        for (int i = 0; i < N; i++) {
-            if (used[i]) {
-                continue;
-            }
-            if (numbers[i] == prev) {
-                continue;
-            }
-
-            arr[depth] = numbers[i];
-            used[i] = true;
-            prev = numbers[i];
-            dfs(depth + 1);
-            used[i] = false;
+        for (int i = start; i < numbers.size(); i++) {
+            result[depth] = numbers.get(i);
+            dfs(i, depth + 1);
         }
     }
 }
