@@ -22,9 +22,6 @@ public class BOJ2217 {
         int maxWeight=arr[0];
 
         for (int weight : arr) {
-            if (maxWeight > weight * count) {
-                break;
-            }
             maxWeight = Math.max(maxWeight, weight*count);
             count++;
         }
