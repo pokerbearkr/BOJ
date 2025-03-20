@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class BOJ1753 {
+public class    BOJ1753 {
     static class Node implements Comparable<Node> {
         int vertex, weight;
 
